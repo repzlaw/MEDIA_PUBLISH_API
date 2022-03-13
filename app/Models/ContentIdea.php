@@ -9,7 +9,7 @@ class ContentIdea extends Model
 {
     use HasFactory;
     protected $guarded =[];
-    protected $with = ['external_websites','internal_websites'];
+    protected $with = ['external_websites:id,url','internal_websites:id,url'];
 
 
     /**

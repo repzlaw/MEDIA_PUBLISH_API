@@ -10,7 +10,7 @@ class Network extends Model
     use HasFactory;
 
     protected $guarded =[];
-    protected $with = ['websites','region'];
+    protected $with = ['websites:id,url','region:id,name'];
 
     /**
      * Get the external websites.

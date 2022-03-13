@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\WebsiteController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\ExternalWebsiteController;
+use App\Http\Controllers\Admin\IpAddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth:api'])->group(functio
         '/internal-websites'=> WebsiteController::class,
         '/external-websites'=> ExternalWebsiteController::class,
         '/settings'=> SettingController::class,
+        '/IpAddress'=> IpAddressController::class,
 
     ]);
 

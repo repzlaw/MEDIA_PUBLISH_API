@@ -99,6 +99,7 @@ function getBrowser()
     $bname = 'Unknown';
     $platform = 'Unknown';
     $version= "";
+    $ub= "";
 
     //First get the platform?
     if (preg_match('/linux/i', $u_agent)) {
@@ -178,7 +179,6 @@ function getBrowser()
         'pattern'    => $pattern
     );
 }
-
 
 //get active guard
 function activeGuard(){

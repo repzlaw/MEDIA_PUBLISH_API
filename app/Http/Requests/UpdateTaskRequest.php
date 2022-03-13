@@ -29,9 +29,9 @@ class UpdateTaskRequest extends FormRequest
             'instructions'=>'required',
             'region_target'=>'required',
             'website_id'=>'required',
-            'assigned_to'=>'required',
+            'assigned_to'=>'required|exists:users,id',
             'task_type'=>'required',
-            'task_id'=>'required'
+            'task_id'=>'required|exists:tasks,id'
         ];
     }
 }

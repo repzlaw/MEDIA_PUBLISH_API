@@ -25,7 +25,7 @@ class SubmitTaskRequest extends FormRequest
     {
         return [
             'document'=>'file|required|mimes:docx|max:2048',
-            'task_id'=>'required',
+            'task_id'=>'required|exists:tasks,id',
         ];
     }
 }

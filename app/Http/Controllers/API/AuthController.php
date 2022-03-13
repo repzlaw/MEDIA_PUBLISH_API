@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AuthResource;
+use App\Models\OauthAccessToken;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -30,9 +33,17 @@ class AuthController extends Controller
 
         $user = User::create($validatedData);
 
-        $accessToken = $user->createToken('authToken')->accessToken;
+        $accessToken = $user->createToken('authToken');
 
-        return response([ 'user' => $user, 'access_token' => $accessToken]);
+        //add clients ip_adress and browser info to tokens table
+        $token = OauthAccessToken::findOrfail($accessToken->token->id);
+        $browser_info = getBrowser();
+        $token->update([
+            'ip_address'=>$request->getClientIp(),
+            'browser_info'=>$browser_info
+        ]);
+
+        return response([ 'user' => (new AuthResource(auth()->user()) ), 'access_token' => $accessToken->accessToken],201);
     }
 
     public function login(Request $request)
@@ -46,11 +57,27 @@ class AuthController extends Controller
             return $this->error(null,'Invalid Credentials',Response::HTTP_UNAUTHORIZED);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        $user = User::where('email', $request->email)->first();
+        $accessToken = $user->createToken('authToken');
+
+        //add clients ip_adress and browser info to tokens table
+        $token = OauthAccessToken::findOrfail($accessToken->token->id);
+        $browser_info = getBrowser();
+        $token->update([
+            'ip_address'=>$request->getClientIp(),
+            'browser_info'=>$browser_info
+        ]);
+
+        //update user table
+        $user->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'last_login_ip' => $request->getClientIp()
+        ]);
+        
         return response()->json([
             'message'=>'login successfull',
-            'user'=>auth()->user(),
-            'token'=>$accessToken,
+            'user'=>(new AuthResource(auth()->user()) ),
+            'token'=>$accessToken->accessToken,
             'code'=>Response::HTTP_OK
         ],200);
 

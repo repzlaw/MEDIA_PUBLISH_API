@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\IpAddress;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+        $ips = IpAddress::pluck('ip_address')->toArray();
+
         if (Auth::check()){
-            if (Auth::user()->type === 'Admin'){
+            if (Auth::user()->type === 'Admin' && (in_array($request->ip(), $ips))){
                 return $next($request);
             }
         }

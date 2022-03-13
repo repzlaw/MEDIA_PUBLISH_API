@@ -10,7 +10,7 @@ class Parents extends Model
     use HasFactory;
     protected $table = 'parents';
     protected $guarded =[];
-    protected $with = ['websites'];
+    protected $with = ['websites:id,url'];
 
 
     /**

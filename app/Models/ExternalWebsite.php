@@ -9,7 +9,7 @@ class ExternalWebsite extends Model
 {
     use HasFactory;
     protected $guarded =[];
-    protected $with = ['region'];
+    protected $with = ['region:id,name'];
 
 
     /**

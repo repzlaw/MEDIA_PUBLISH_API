@@ -33,6 +33,8 @@ class User extends Authenticatable
         'fixed_monthly_payout',
         'total_payout',
         'currency',
+        'last_login_at',
+        'last_login_ip'
     ];
 
     /**

@@ -25,7 +25,7 @@ class StoreTaskConversationRequest extends FormRequest
     {
         return [
             'message' => 'required',
-            'task_id' => 'required',
+            'task_id' => 'required|exists:tasks,id',
             'attachment'=>'file|mimes:docx,doc,jpg,jpeg,gif,pdf|max:2048',
         ];
     }

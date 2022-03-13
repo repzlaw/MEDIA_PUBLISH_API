@@ -26,7 +26,7 @@ class ReviewTaskRequest extends FormRequest
         return [
             'status'=>'required',
             'feedback'=>'required',
-            'task_id'=>'required',
+            'task_id'=>'required|exists:tasks,id',
         ];
     }
 }
