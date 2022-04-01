@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\TaskNoteController;
+use App\Http\Controllers\MessagingController;
 use App\Http\Controllers\ContentIdeaController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TaskConversationController;
@@ -62,14 +63,18 @@ Route::middleware(['auth:api'])->group(function () {
             Route::post('/', [TaskConversationController::class,'store'])->name('store');
         });
     });
+
+    //content ideas routes
     Route::prefix('/content-ideas')->middleware(['verified'])->name('content-ideas.')->group(function () {
         Route::post('/share', [ContentIdeaController::class, 'share'])->name('share');
         Route::post('/update', [ContentIdeaController::class, 'update'])->name('update');
         Route::get('/shared-ideas', [ContentIdeaController::class, 'sharedIdeas']);
         
     });
+
     Route::apiResources([
         '/content-ideas'=> ContentIdeaController::class,
+        '/messagings'=> MessagingController::class,
 
     ]);
 });

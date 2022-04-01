@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\OnlineUsersResource;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
         $users = User::orderBy('last_seen', 'DESC')
                      ->paginate(30);
           
-        return $this->success( UserResource::collection(($users)),
+        return $this->success( OnlineUsersResource::collection(($users)),
                             'request success',
                             200
                 );

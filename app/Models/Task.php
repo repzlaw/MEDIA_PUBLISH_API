@@ -14,7 +14,9 @@ class Task extends Model
 
     protected $keyType = 'uuid';
     protected $guarded = [];
-    protected $with = ['payout:id,status','feed_back:id,feedback'];
+    protected $with = ['payout:id,status','feed_back',
+                        'assigner_user:id,name',
+                        'created_by:id,name'];
 
 
     /**
