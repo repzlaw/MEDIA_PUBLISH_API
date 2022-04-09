@@ -52,10 +52,6 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth:api'])->group(functio
 
 
 
-
-
-
-
 Route::fallback(function(){
     return response()->json([
         'message' => 'Page Not Found. If error persists, contact work@tvz.com'], 404);

@@ -25,7 +25,7 @@ class StoreNoteRequest extends FormRequest
     {
         return [
             'note'=>'required',
-            'task_id'=>'required'
+            'task_id'=>'required|exists:tasks,id'
         ];
     }
 }

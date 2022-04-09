@@ -25,7 +25,7 @@ class StoreNetworkRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'region_id'=>'required',
+            'region_id'=>'required|exists:regions,id',
         ];
     }
 }

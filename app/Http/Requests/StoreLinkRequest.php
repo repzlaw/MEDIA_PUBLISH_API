@@ -24,8 +24,8 @@ class StoreLinkRequest extends FormRequest
     public function rules()
     {
         return [
-            'website_id'=>'required',
-            'publisher_id'=>'required',
+            'website_id'=>'required|exists:websites,id',
+            'publisher_id'=>'required|exists:publishers,id',
             'url'=>'required',
             'title'=>'required',
             'content'=>'required',

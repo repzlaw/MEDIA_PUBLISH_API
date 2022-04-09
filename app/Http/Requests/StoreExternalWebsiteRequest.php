@@ -25,7 +25,7 @@ class StoreExternalWebsiteRequest extends FormRequest
     {
         return [
             'url'=>'required',
-            'region_id'=>'required',
+            'region_id'=>'required|exists:regions,id',
         ];
     }
 }

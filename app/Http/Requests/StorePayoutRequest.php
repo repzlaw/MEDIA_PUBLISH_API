@@ -26,7 +26,7 @@ class StorePayoutRequest extends FormRequest
         return [
             'amount'=>'required',
             'status'=>'required',
-            // 'task_id'=>'required',
+            // 'task_id'=>'required|exists:tasks,id',
             'user_id'=>'required',
         ];
     }

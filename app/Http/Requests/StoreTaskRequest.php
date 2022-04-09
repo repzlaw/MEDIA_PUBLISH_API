@@ -27,11 +27,12 @@ class StoreTaskRequest extends FormRequest
             'task'=>'required',
             'topic'=>'required',
             'instructions'=>'required',
-            'region_target'=>'required',
-            'website_id'=>'required',
+            'region_target'=>'required|exists:regions,id',
+            'website_id'=>'required|exists:websites,id',
             'assigned_to'=>'required|exists:users,id',
             'task_type'=>'required',
-            // 'status'=>'required'
+            'word_limit'=>'integer',
+            'time_limit'=>'integer'
         ];
     }
 }

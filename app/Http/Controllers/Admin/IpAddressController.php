@@ -44,17 +44,17 @@ class IpAddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreIpAddressRequest $request)
-    {
-        $ipAddress = IpAddress::create([
-            'ip_address'=> $request->ip_address,
-        ]);
+    // public function store(StoreIpAddressRequest $request)
+    // {
+    //     $ipAddress = IpAddress::create([
+    //         'ip_address'=> $request->ip_address,
+    //     ]);
 
-        return $this->success( new IpAddressResource(($ipAddress)),
-                                'ipAddress added successfully',
-                                200
-                            );
-    }
+    //     return $this->success( new IpAddressResource(($ipAddress)),
+    //                             'ipAddress added successfully',
+    //                             200
+    //                         );
+    // }
 
     /**
      * Display the specified resource.
@@ -77,18 +77,18 @@ class IpAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreIpAddressRequest $request, IpAddress $ipAddress)
-    {
-        $ipAddress->update([
-            'ip_address'=> $request->ip_address,
-        ]);
+    // public function update(StoreIpAddressRequest $request, IpAddress $ipAddress)
+    // {
+    //     $ipAddress->update([
+    //         'ip_address'=> $request->ip_address,
+    //     ]);
 
-        return $this->success( new IpAddressResource(($ipAddress)),
-                                'ipAddress updated successfully',
-                                200
-                            );
+    //     return $this->success( new IpAddressResource(($ipAddress)),
+    //                             'ipAddress updated successfully',
+    //                             200
+    //                         );
 
-    }
+    // }
 
     /**
      * Remove the specified resource from storage.

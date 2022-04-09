@@ -83,7 +83,9 @@ class TaskController extends Controller
             'instructions'=>$request->instructions,
             'task_type'=>$request->task_type,
             'task_given_on'=>date("Y-m-d H:i:s"),
-            'admin_id'=>$request->user()->id
+            'admin_id'=>$request->user()->id,
+            'word_limit'=>$request->word_limit,
+            'time_limit'=>$request->time_limit
         ]);
 
         if ($task) {
@@ -141,7 +143,9 @@ class TaskController extends Controller
             'website_id'=>$request->website_id,
             'assigned_to'=>$request->assigned_to,
             'instructions'=>$request->instructions,
-            'task_type'=>$request->task_type
+            'task_type'=>$request->task_type,
+            'word_limit'=>$request->word_limit,
+            'time_limit'=>$request->time_limit
         ]);
 
         return response()->json([

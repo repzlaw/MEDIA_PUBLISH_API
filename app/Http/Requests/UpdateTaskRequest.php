@@ -27,11 +27,13 @@ class UpdateTaskRequest extends FormRequest
             'task'=>'required',
             'topic'=>'required',
             'instructions'=>'required',
-            'region_target'=>'required',
-            'website_id'=>'required',
+            'region_target'=>'required|exists:regions,id',
+            'website_id'=>'required|exists:websites,id',
             'assigned_to'=>'required|exists:users,id',
             'task_type'=>'required',
-            'task_id'=>'required|exists:tasks,id'
+            'task_id'=>'required|exists:tasks,id',
+            'word_limit'=>'required',
+            'time_limit'=>'required'
         ];
     }
 }

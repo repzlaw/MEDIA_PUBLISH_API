@@ -20,6 +20,7 @@ class CreateMessagingsTable extends Migration
             $table->foreign('from_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->uuid('to_user_id');
             $table->foreign('to_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->enum('read', ['true', 'false'])->default('false');
             $table->timestamps();
         });
     }

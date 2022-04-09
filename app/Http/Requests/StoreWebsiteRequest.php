@@ -26,7 +26,7 @@ class StoreWebsiteRequest extends FormRequest
         return [
             'url'=>'required',
             'website_code'=>'required',
-            'region_id'=>'required',
+            'region_id'=>'required|exists:regions,id',
             // 'parent_id'=>'required',
         ];
     }

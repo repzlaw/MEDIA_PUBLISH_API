@@ -24,7 +24,7 @@ class StoreContentIdeaRequest extends FormRequest
     public function rules()
     {
         return [
-            'topic'=>'required',
+            'topic'=>'required|exists:tasks,id',
             'reference_url'=>'required',
         ];
     }

@@ -29,7 +29,7 @@ class StoreFeedbackRequest extends FormRequest
     public function rules()
     {
         return [
-            'task_id'=>'required',
+            'task_id'=>'required|exists:tasks,id',
             'feedback'=>'required',
         ];
     }
